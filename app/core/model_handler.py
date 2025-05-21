@@ -4,7 +4,7 @@ import joblib
 import logging
 import numpy as np
 import tempfile
-from app.storage.gcs import gcs_client
+from app.storage.google_buckets_gcs import gcs_client
 
 logger = logging.getLogger(__name__)
 

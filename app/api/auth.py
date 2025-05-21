@@ -6,7 +6,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from app.config import settings
 from app.api.models import TokenData, User, UserInDB
-from app.db.mongo_client import get_users_collection
+from app.database.mongo_client import get_users_collection
 import logging
 
 logger = logging.getLogger(__name__)

@@ -15,11 +15,11 @@ from app.api.auth import (
     get_current_active_user
 )
 from app.api.validators import validate_audio_file, validate_email, validate_password
-from app.db.mongo_client import (
+from app.database.mongo_client import (
     get_users_collection, get_audio_files_collection,
     get_detections_collection
 )
-from app.storage.gcs import GCStorage
+from app.storage.google_buckets_gcs import GCStorage
 from app.core.ml_service import MLServiceClient
 from app.config import settings
 

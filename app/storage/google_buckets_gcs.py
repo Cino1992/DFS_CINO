@@ -98,3 +98,7 @@ class GCStorage:
         except Exception as e:
             logger.error(f"Error generating signed URL: {e}")
             raise
+
+
+# Create a client instance to export
+gcs_client = storage.Client()
