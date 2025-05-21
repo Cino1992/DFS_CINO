@@ -1,0 +1,28 @@
+# .gitignore
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+env/
+venv/
+ENV/
+.venv/
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Logs
+*.log
+
+# Environment variables
+.env
