@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - mongo
+      - ml-service
+    networks:
+      - deepfake-network
+
+  ml-service:
+    image: python:3.10-slim
+    working_dir: /app
+    volumes:
+      - ./ml-service-mock:/app
+    command: >
+      bash -c "pip install flask gunicorn requests && 
+      python -m flask run --host=0.0.0.0 --port=5000"
+    ports:
+      - "5000:5000"
+    networks:
+      - deepfake-network
+
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    networks:
+      - deepfake-network
+
+networks:
+  deepfake-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
